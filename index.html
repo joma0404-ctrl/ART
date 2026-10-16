@@ -1,0 +1,2817 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>藝境墨華 · 學生美術得獎作品特展</title>
+  <meta name="description" content="全國學生美術比賽精選得獎水墨作品線上數位美術館，收錄特優、優等、甲等獲獎佳作。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       CSS Variables & Themes
+       ========================================================================== */
+    :root {
+      --font-serif: "Noto Serif TC", "Songti TC", "STSong", "PMingLiU", serif;
+      --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      --font-display: "Cinzel", var(--font-serif);
+      
+      --color-gold: #c9a657;
+      --color-gold-light: #e5cd8d;
+      --color-gold-dim: rgba(201, 166, 87, 0.2);
+      --color-seal-red: #c93d3d;
+      --color-seal-dark: #8c1e1e;
+      --color-vermilion: #e04f3f;
+      
+      --award-top-bg: linear-gradient(135deg, #d4af37, #aa7c11);
+      --award-top-text: #fff;
+      --award-first-bg: linear-gradient(135deg, #5b86e5, #36d1dc);
+      --award-first-text: #fff;
+      --award-merit-bg: linear-gradient(135deg, #43a047, #1b5e20);
+      --award-merit-text: #fff;
+
+      --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: all 0.2s ease;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+    }
+
+    /* Dark Gallery Theme (Default) */
+    [data-theme="dark"] {
+      --bg-primary: #0e1013;
+      --bg-secondary: #16181d;
+      --bg-surface: #1e2129;
+      --bg-surface-elevated: #282c37;
+      --bg-glass: rgba(22, 24, 29, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(201, 166, 87, 0.3);
+      --text-primary: #f5f5f7;
+      --text-secondary: #a9afb9;
+      --text-muted: #6e7582;
+      --text-gold: #e5cd8d;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.6);
+      --card-matting: #1a1c22;
+      --scroll-bg: #14161b;
+    }
+
+    /* Parchment Paper Theme (Light) */
+    [data-theme="light"] {
+      --bg-primary: #f7f4ed;
+      --bg-secondary: #ede8dc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #fcfbfa;
+      --bg-glass: rgba(247, 244, 237, 0.9);
+      --border-subtle: rgba(70, 50, 30, 0.1);
+      --border-accent: rgba(160, 120, 50, 0.35);
+      --text-primary: #23201d;
+      --text-secondary: #5e5852;
+      --text-muted: #8d857d;
+      --text-gold: #966f22;
+      --shadow-soft: 0 10px 25px rgba(50, 40, 20, 0.08);
+      --shadow-hover: 0 18px 35px rgba(50, 40, 20, 0.14);
+      --card-matting: #f3ede2;
+      --scroll-bg: #ece5d6;
+    }
+
+    /* ==========================================================================
+       Global & Reset
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Rice paper texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.035;
+      background-image: radial-gradient(var(--text-primary) 0.75px, transparent 0.75px);
+      background-size: 18px 18px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ==========================================================================
+       Header & Navigation
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      cursor: pointer;
+    }
+
+    .brand-seal {
+      width: 38px;
+      height: 38px;
+      background: var(--color-seal-red);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-weight: 900;
+      font-size: 1.15rem;
+      border-radius: 6px;
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.4), 0 3px 8px rgba(201, 61, 61, 0.4);
+      border: 1px solid rgba(255,255,255,0.2);
+      letter-spacing: -1px;
+      user-select: none;
+    }
+
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-main {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-primary);
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      color: var(--text-gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      transition: var(--transition-fast);
+      position: relative;
+    }
+
+    .btn-icon:hover {
+      color: var(--color-gold);
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: var(--transition-fast);
+    }
+
+    .btn-pill:hover, .btn-pill.active {
+      color: var(--color-gold);
+      border-color: var(--border-accent);
+      background: var(--bg-surface-elevated);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #c9a657, #9b7a32);
+      color: #0e1013;
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 4px 15px rgba(201, 166, 87, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #d8b76c, #aa893f);
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(201, 166, 87, 0.5);
+    }
+
+    /* ==========================================================================
+       Hero Section
+       ========================================================================== */
+    .hero-section {
+      padding: 4.5rem 1.5rem 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: var(--radius-full);
+      background: var(--color-gold-dim);
+      border: 1px solid var(--border-accent);
+      color: var(--text-gold);
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: 3px;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      background: linear-gradient(180deg, var(--text-primary) 40%, var(--text-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .stats-ribbon {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      margin-top: 1.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    /* ==========================================================================
+       Interactive Filter & Control Bar
+       ========================================================================== */
+    .filter-wrapper {
+      position: sticky;
+      top: 65px;
+      z-index: 90;
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 1.5rem;
+      margin-bottom: 2rem;
+      transition: var(--transition-smooth);
+    }
+
+    .filter-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .filter-pills::-webkit-scrollbar { display: none; }
+
+    .filter-pill {
+      padding: 0.45rem 1.1rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--border-accent);
+      color: var(--text-primary);
+    }
+
+    .filter-pill.active {
+      background: var(--color-gold);
+      color: #0e1013;
+      border-color: var(--color-gold);
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(201, 166, 87, 0.35);
+    }
+
+    .filter-pill .count {
+      font-size: 0.75rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: var(--radius-full);
+      background: rgba(0, 0, 0, 0.15);
+    }
+    [data-theme="dark"] .filter-pill:not(.active) .count {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .filter-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      position: relative;
+      width: 220px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.45rem 0.9rem 0.45rem 2.2rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .search-box input:focus {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px var(--color-gold-dim);
+      width: 260px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .sort-select {
+      padding: 0.45rem 2rem 0.45rem 0.9rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a9afb9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 14px;
+      transition: var(--transition-fast);
+    }
+
+    .sort-select:hover, .sort-select:focus {
+      border-color: var(--border-accent);
+      color: var(--text-primary);
+    }
+
+    .layout-toggle {
+      display: flex;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 2px;
+    }
+
+    .layout-btn {
+      padding: 0.35rem 0.65rem;
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+    }
+
+    .layout-btn.active {
+      background: var(--bg-surface-elevated);
+      color: var(--color-gold);
+    }
+
+    /* ==========================================================================
+       Gallery Display
+       ========================================================================== */
+    .gallery-main {
+      max-width: 1400px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* Grid Layout */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2.25rem;
+      transition: var(--transition-smooth);
+    }
+
+    /* Scroll Wall Layout (Vertical focus) */
+    .gallery-grid.layout-scroll {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+
+    /* Single Column Layout */
+    .gallery-grid.layout-single {
+      grid-template-columns: minmax(320px, 860px);
+      justify-content: center;
+      gap: 3.5rem;
+    }
+
+    /* Artwork Card - Traditional Scroll & Modern Matte Frame */
+    .art-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .art-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--border-accent);
+    }
+
+    /* Silk mounting frame container for painting */
+    .art-frame-wrapper {
+      background: var(--card-matting);
+      padding: 1.25rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .art-frame-inner {
+      position: relative;
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      background: #000;
+    }
+
+    .art-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      aspect-ratio: 1 / 1.95;
+    }
+
+    .art-card:hover .art-img {
+      transform: scale(1.035);
+    }
+
+    /* Floating action overlay on image */
+    .art-overlay-actions {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: var(--transition-fast);
+      z-index: 10;
+    }
+
+    .art-card:hover .art-overlay-actions {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .overlay-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-full);
+      background: rgba(14, 16, 19, 0.85);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: var(--transition-fast);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .overlay-btn:hover {
+      background: var(--color-gold);
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    .overlay-btn.favorited {
+      color: var(--color-vermilion);
+    }
+
+    /* Award Seal Stamp */
+    .award-seal {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      z-index: 10;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(4px);
+    }
+
+    .award-seal.seal-top {
+      background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+      color: #2b1d03;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+      border: 1px solid #ffd700;
+    }
+
+    .award-seal.seal-first {
+      background: linear-gradient(135deg, #b0bec5 0%, #546e7a 100%);
+      color: #fff;
+      border: 1px solid #cfd8dc;
+    }
+
+    .award-seal.seal-merit {
+      background: linear-gradient(135deg, #cd7f32 0%, #8d4f18 100%);
+      color: #fff;
+      border: 1px solid #e09953;
+    }
+
+    /* Card Details */
+    .art-details {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .art-header-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .art-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 1px;
+    }
+
+    .art-artist {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      color: var(--text-gold);
+      font-weight: 600;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .artist-seal-mini {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
+      text-align: center;
+      background: var(--color-seal-red);
+      color: #fff;
+      font-size: 0.65rem;
+      border-radius: 3px;
+      box-shadow: inset 0 0 3px rgba(0,0,0,0.4);
+    }
+
+    .art-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .art-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .art-brief {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-weight: 300;
+    }
+
+    .art-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .art-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface-elevated);
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .art-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: auto;
+    }
+
+    .btn-explore {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      transition: var(--transition-fast);
+    }
+
+    .btn-explore:hover {
+      color: var(--color-gold-light);
+      transform: translateX(4px);
+    }
+
+    .btn-heart {
+      color: var(--text-muted);
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.8rem;
+    }
+
+    .btn-heart:hover, .btn-heart.favorited {
+      color: var(--color-vermilion);
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 5rem 1.5rem;
+      color: var(--text-muted);
+      grid-column: 1 / -1;
+    }
+
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    /* ==========================================================================
+       Curator's Note & Appreciation Guide Section
+       ========================================================================== */
+    .curator-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 4.5rem 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .curator-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      color: var(--text-gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 2px;
+    }
+
+    .curator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .curator-box {
+      background: var(--bg-surface);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .curator-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 1.5rem;
+      width: 40px;
+      height: 3px;
+      background: var(--color-gold);
+      border-radius: var(--radius-full);
+    }
+
+    .curator-box h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      margin-bottom: 0.85rem;
+      color: var(--text-primary);
+      letter-spacing: 1px;
+    }
+
+    .curator-box p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ==========================================================================
+       Lightbox & Deep Zoom Inspection Modal
+       ========================================================================== */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 11, 14, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      display: flex;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Close button */
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      z-index: 1100;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+      transform: rotate(90deg);
+    }
+
+    /* Lightbox layout container */
+    .lightbox-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Left: Canvas / Image Viewport */
+    .lightbox-viewport {
+      flex: 1;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      user-select: none;
+      cursor: grab;
+    }
+
+    .lightbox-viewport.is-dragging {
+      cursor: grabbing;
+    }
+
+    .lightbox-img-wrapper {
+      position: absolute;
+      transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img {
+      max-height: 85vh;
+      max-width: 85vw;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.15);
+      pointer-events: none;
+    }
+
+    /* Floating Viewport Toolbar (Zoom, Reset, Fullscreen) */
+    .viewport-toolbar {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(20, 22, 28, 0.85);
+      backdrop-filter: blur(12px);
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      z-index: 1050;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .toolbar-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: var(--transition-fast);
+    }
+
+    .toolbar-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--color-gold);
+    }
+
+    .zoom-level-badge {
+      font-size: 0.8rem;
+      font-family: var(--font-display);
+      color: var(--text-gold);
+      min-width: 48px;
+      text-align: center;
+    }
+
+    /* Lightbox Navigation Chevrons */
+    .lightbox-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      z-index: 1050;
+    }
+
+    .lightbox-nav-btn:hover {
+      background: var(--color-gold);
+      color: #000;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lightbox-prev { left: 1.5rem; }
+    .lightbox-next { right: calc(380px + 1.5rem); }
+
+    /* Right: Artwork Information Panel */
+    .lightbox-sidebar {
+      width: 380px;
+      height: 100%;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      z-index: 1080;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.35s ease;
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .sidebar-award {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-title {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+      letter-spacing: 1px;
+    }
+
+    .sidebar-artist {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--text-gold);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sidebar-body {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      flex: 1;
+    }
+
+    .info-group-title {
+      font-size: 0.8rem;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-gold);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .info-group-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .curator-highlight-card {
+      background: var(--bg-surface-elevated);
+      border-left: 3px solid var(--color-gold);
+      padding: 1rem 1.25rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      background: var(--bg-surface-elevated);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .spec-label {
+      color: var(--text-muted);
+    }
+
+    .spec-val {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Color Palette Extracted */
+    .color-swatches {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .color-swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .sidebar-actions {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      gap: 0.75rem;
+      background: var(--bg-surface);
+    }
+
+    .btn-sidebar {
+      flex: 1;
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition-fast);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+    }
+
+    .btn-sidebar:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+    }
+
+    .btn-sidebar.favorited {
+      color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+    }
+
+    /* Sidebar Toggle for Small Screens */
+    .sidebar-toggle-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 5rem;
+      z-index: 1100;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* ==========================================================================
+       Fullscreen Slideshow Tour Mode
+       ========================================================================== */
+    .slideshow-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .slideshow-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .slideshow-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(40px) brightness(0.25);
+      transform: scale(1.1);
+      transition: background-image 0.8s ease;
+    }
+
+    .slideshow-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-height: 90vh;
+      max-width: 90vw;
+    }
+
+    .slideshow-frame {
+      max-height: 72vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .slideshow-frame img {
+      max-height: 72vh;
+      width: auto;
+      object-fit: contain;
+      animation: fadeInZoom 0.8s ease forwards;
+    }
+
+    @keyframes fadeInZoom {
+      0% { opacity: 0; transform: scale(0.96); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .slideshow-caption {
+      margin-top: 1.5rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .slideshow-award-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      font-family: var(--font-serif);
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.4rem;
+    }
+
+    .slideshow-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .slideshow-artist {
+      font-size: 0.95rem;
+      color: var(--color-gold);
+      margin-top: 0.2rem;
+    }
+
+    .slideshow-controls {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      background: rgba(20, 20, 24, 0.8);
+      backdrop-filter: blur(12px);
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      z-index: 20;
+    }
+
+    .slideshow-progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--color-gold);
+      width: 0%;
+      transition: width 0.1s linear;
+      z-index: 25;
+    }
+
+    .slideshow-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 30;
+      transition: var(--transition-fast);
+    }
+    .slideshow-close:hover {
+      background: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+    }
+
+    /* ==========================================================================
+       Footer
+       ========================================================================== */
+    .site-footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-subtle);
+      padding: 3.5rem 1.5rem 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-brand .brand-main {
+      font-size: 1.4rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-gold);
+    }
+
+    .footer-bottom {
+      width: 100%;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn-back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+
+    .btn-back-to-top:hover {
+      color: var(--color-gold);
+    }
+
+    /* ==========================================================================
+       Toast Notification
+       ========================================================================== */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-accent);
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-hover);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: var(--transition-fast);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ==========================================================================
+       Responsive Breakpoints
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .lightbox-sidebar {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translateX(100%);
+        width: 340px;
+      }
+      .lightbox-sidebar.open {
+        transform: translateX(0);
+      }
+      .lightbox-next {
+        right: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filter-controls {
+        justify-content: space-between;
+      }
+      .search-box {
+        width: 100%;
+      }
+      .search-box input:focus {
+        width: 100%;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+      .lightbox-prev, .lightbox-next {
+        width: 42px;
+        height: 42px;
+      }
+      .lightbox-prev { left: 0.5rem; }
+      .lightbox-next { right: 0.5rem; }
+      .viewport-toolbar {
+        bottom: 1rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .lightbox-sidebar {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Site Navigation Bar
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand-logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <div class="brand-seal">墨</div>
+        <div class="brand-title">
+          <span class="brand-main">藝境墨華</span>
+          <span class="brand-sub">STUDENT ARTWORKS EXHIBITION</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Slideshow Tour Launcher -->
+        <button class="btn-pill" id="launchSlideshowBtn" title="開啟沈浸式全螢幕導覽">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>虛擬導覽</span>
+        </button>
+
+        <!-- Sound ambience synthesizer toggle -->
+        <button class="btn-icon" id="soundToggleBtn" title="切換雅樂水墨氛圍音效">
+          <svg id="soundOnIcon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg id="soundOffIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <!-- Dark / Light Theme Toggle -->
+        <button class="btn-icon" id="themeToggleBtn" title="切換展廳光影模式 (墨黑 / 雅白)">
+          <svg id="moonIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg id="sunIcon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Hero Section
+       ========================================================================== */
+  <section class="hero-section">
+    <div class="hero-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+      </svg>
+      <span>全國學生美術比賽 · 得獎佳作精選特輯</span>
+    </div>
+
+    <h1 class="hero-title">筆墨生輝 · 青春丹青</h1>
+    
+    <p class="hero-desc">
+      筆隨心動，墨隨情灑。本展收錄七位青年學子的得獎水墨佳作，揉合傳統水墨皴法與當代生活凝眸，
+      從市井煙火的老鞋坊與麵攤，到生機盎然的貓咪、雀鳥與巨型昆蟲，展現豐沛深厚的藝術生命力。
+    </p>
+
+    <!-- Stats Ribbon -->
+    <div class="stats-ribbon">
+      <div class="stat-item">
+        <span class="stat-val">7</span>
+        <span class="stat-label">展出水墨佳作</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val" style="color: #ffd700;">2</span>
+        <span class="stat-label">最高榮譽 特優</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val" style="color: #64b5f6;">2</span>
+        <span class="stat-label">頂尖榮譽 優等</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val" style="color: #ffb74d;">3</span>
+        <span class="stat-label">卓越肯定 甲等</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Interactive Filters & Layout Toolbar
+       ========================================================================== -->
+  <div class="filter-wrapper">
+    <div class="filter-container">
+      
+      <!-- Filter Pills -->
+      <div class="filter-pills" id="filterPills">
+        <button class="filter-pill active" data-filter="all">
+          <span>全部作品</span>
+          <span class="count">7</span>
+        </button>
+        <button class="filter-pill" data-filter="特優">
+          <span>特優</span>
+          <span class="count">2</span>
+        </button>
+        <button class="filter-pill" data-filter="優等">
+          <span>優等</span>
+          <span class="count">2</span>
+        </button>
+        <button class="filter-pill" data-filter="甲等">
+          <span>甲等</span>
+          <span class="count">3</span>
+        </button>
+        <button class="filter-pill" data-filter="favorites">
+          <span>我的收藏</span>
+          <span class="count" id="favoritesCount">0</span>
+        </button>
+      </div>
+
+      <!-- Controls Right -->
+      <div class="filter-controls">
+        <!-- Live Search -->
+        <div class="search-box">
+          <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="搜尋作品、作者、關鍵字..." autocomplete="off">
+        </div>
+
+        <!-- Sorter -->
+        <select class="sort-select" id="sortSelect">
+          <option value="award-asc">榮譽排序 (特優優先)</option>
+          <option value="title-asc">作品名稱 (筆劃遞增)</option>
+          <option value="artist-asc">作者姓名 (筆劃排序)</option>
+        </select>
+
+        <!-- Layout View Switcher -->
+        <div class="layout-toggle">
+          <button class="layout-btn active" id="layoutGridBtn" title="畫廊網格模式">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </button>
+          <button class="layout-btn" id="layoutScrollBtn" title="條幅立軸牆模式">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="2" width="4" height="20"></rect>
+              <rect x="10" y="2" width="4" height="20"></rect>
+              <rect x="16" y="2" width="4" height="20"></rect>
+            </svg>
+          </button>
+          <button class="layout-btn" id="layoutSingleBtn" title="單幅聚焦長卷模式">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Gallery Showcase
+       ========================================================================== -->
+  <main class="gallery-main">
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Artworks injected via JavaScript -->
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       Curator's Note & Artistic Exploration Section
+       ========================================================================== -->
+  <section class="curator-section">
+    <div class="curator-container">
+      <div class="section-header">
+        <div class="section-subtitle">CURATOR'S INSIGHTS</div>
+        <h2 class="section-title">策展筆記 · 青年水墨的當代語彙</h2>
+      </div>
+
+      <div class="curator-grid">
+        <div class="curator-box">
+          <h3>生活敘事的溫度</h3>
+          <p>
+            參賽學子不拘泥於傳統高山流水，而是將銳利溫柔的目光投向日常生活。《老鞋匠》縫補時光的人情、《巷口麵店》熱氣蒸騰的市井百態、《可愛的貓》慵懶依偎的午後，將台灣在地生活淬鍊為動人的水墨長卷。
+          </p>
+        </div>
+
+        <div class="curator-box">
+          <h3>墨韻光影的探求</h3>
+          <p>
+            《鳥店》中幽微天井灑落的柔光、白鴨潔白羽毛與深黑背景的撞擊，展現了西方古典林布蘭光影美學與傳統墨分五色的絕妙融通；重彩設色既保有骨法用筆的剛勁，又富有現代空間的縱深層次。
+          </p>
+        </div>
+
+        <div class="curator-box">
+          <h3>生態想像與生命力</h3>
+          <p>
+            從《偷蛋賊》充滿速度感的詼諧追逐，到《叢靈》俯察微觀枯木殘骸與蜘蛛結網的自然循環，乃至《昆蟲大進擊》神木之上的霸氣決鬥，孩子們以奔放的筆法與想像力，構築出令人屏息的自然奇觀。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Artwork Deep Zoom / Lightbox Modal
+       ========================================================================== -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <!-- Top Right Actions -->
+    <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="展開/收合作品導讀與賞析">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="4" y1="21" x2="4" y2="14"></line>
+        <line x1="4" y1="10" x2="4" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12" y2="3"></line>
+        <line x1="20" y1="21" x2="20" y2="16"></line>
+        <line x1="20" y1="12" x2="20" y2="3"></line>
+        <line x1="1" y1="14" x2="7" y2="14"></line>
+        <line x1="9" y1="8" x2="15" y2="8"></line>
+        <line x1="17" y1="16" x2="23" y2="16"></line>
+      </svg>
+    </button>
+    <button class="modal-close-btn" id="closeLightboxBtn" title="關閉檢視 (ESC)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="lightbox-content">
+      <!-- Left: Viewport Area -->
+      <div class="lightbox-viewport" id="lightboxViewport">
+        <div class="lightbox-img-wrapper" id="lightboxImgWrapper">
+          <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrevBtn" title="上一幅作品 (←)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="lightbox-nav-btn lightbox-next" id="lightboxNextBtn" title="下一幅作品 (→)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Floating Zoom Toolbar -->
+        <div class="viewport-toolbar">
+          <button class="toolbar-btn" id="zoomOutBtn" title="縮小 (-)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </button>
+          
+          <span class="zoom-level-badge" id="zoomLevelBadge">100%</span>
+
+          <button class="toolbar-btn" id="zoomInBtn" title="放大 (+)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="11" y1="8" x2="11" y2="14"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </button>
+
+          <button class="toolbar-btn" id="zoomResetBtn" title="重置畫面大小 (R)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <polyline points="3 3 3 8 8 8"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: Detailed Sidebar -->
+      <aside class="lightbox-sidebar" id="lightboxSidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-award" id="modalAwardBadge">特優</div>
+          <h2 class="sidebar-title" id="modalTitle">可愛的貓</h2>
+          <div class="sidebar-artist">
+            <span class="artist-seal-mini">作</span>
+            <span id="modalArtist">胡友馨</span>
+          </div>
+        </div>
+
+        <div class="sidebar-body">
+          <!-- Curatorial Appreciation -->
+          <div class="info-group">
+            <div class="info-group-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              作品導讀
+            </div>
+            <p class="info-group-text" id="modalDescription"></p>
+          </div>
+
+          <!-- Highlight -->
+          <div class="curator-highlight-card">
+            <div style="font-weight:700; font-size: 0.82rem; color: var(--color-gold); margin-bottom: 0.25rem;">
+              評審亮點賞析
+            </div>
+            <div id="modalHighlight"></div>
+          </div>
+
+          <!-- Technical Specs -->
+          <div class="info-group">
+            <div class="info-group-title">畫作典藏規格</div>
+            <div class="spec-grid">
+              <div class="spec-item">
+                <span class="spec-label">作品類別</span>
+                <span class="spec-val" id="modalCategory">水墨設色</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">原作尺寸</span>
+                <span class="spec-val" id="modalDims">646 × 1272 px</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">幅面比例</span>
+                <span class="spec-val" id="modalAspect">1:1.97 豎幅條幅</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">得獎年份</span>
+                <span class="spec-val">全國美展特輯</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Extracted Color Palette -->
+          <div class="info-group">
+            <div class="info-group-title">主墨色彩盤</div>
+            <div class="color-swatches" id="modalColors"></div>
+          </div>
+        </div>
+
+        <!-- Sidebar Actions -->
+        <div class="sidebar-actions">
+          <button class="btn-sidebar" id="modalFavBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span id="modalFavText">加入收藏</span>
+          </button>
+          
+          <button class="btn-sidebar" id="modalShareBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span>複製資訊</span>
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Fullscreen Slideshow Virtual Tour Mode
+       ========================================================================== -->
+  <div class="slideshow-modal" id="slideshowModal">
+    <div class="slideshow-progress-bar" id="slideshowProgressBar"></div>
+    <div class="slideshow-bg" id="slideshowBg"></div>
+    
+    <button class="slideshow-close" id="closeSlideshowBtn" title="退出虛擬導覽 (ESC)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="slideshow-content">
+      <div class="slideshow-frame">
+        <img src="" id="slideshowImg" alt="展出畫作">
+      </div>
+      <div class="slideshow-caption">
+        <span class="slideshow-award-tag" id="slideshowAward">特優</span>
+        <h2 class="slideshow-title" id="slideshowTitle">作品標題</h2>
+        <div class="slideshow-artist" id="slideshowArtist">作者姓名</div>
+      </div>
+    </div>
+
+    <!-- Slideshow Control Bar -->
+    <div class="slideshow-controls">
+      <button class="btn-icon" id="slideshowPrevBtn" title="上一幅">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <button class="btn-icon" id="slideshowPlayToggle" title="暫停 / 播放">
+        <svg id="slideshowPauseIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="6" y="4" width="4" height="16"></rect>
+          <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+        <svg id="slideshowPlayIcon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+      </button>
+
+      <button class="btn-icon" id="slideshowNextBtn" title="下一幅">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastMessage">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+    </svg>
+    <span id="toastText">訊息已更新</span>
+  </div>
+
+  <!-- ==========================================================================
+       Footer
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="brand-seal">墨</div>
+        <div class="brand-main">藝境墨華 · 學生美術得獎作品特展</div>
+        <p style="max-width: 500px; color: var(--text-secondary); font-size: 0.88rem; margin-top: 0.4rem;">
+          傳承東方水墨精粹，點染青春原創視界。記錄青年學子揮灑才華的榮耀軌跡。
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#galleryGrid">返回畫廊</a>
+        <a href="#" onclick="openSlideshow(); return false;">全螢幕導覽</a>
+        <a href="#" onclick="filterByAward('特優'); return false;">特優作品</a>
+        <a href="#" onclick="filterByAward('優等'); return false;">優等作品</a>
+        <a href="#" onclick="filterByAward('甲等'); return false;">甲等作品</a>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 藝境墨華 數位展覽館 · 版權所有 轉載請註明出處與原作作者</div>
+        <button class="btn-back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span>回到頂部</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Application Logic & Interactions
+       ========================================================================== -->
+  <script>
+    /* Artwork Dataset */
+    const artworksData = [
+      {
+        id: 1,
+        title: "可愛的貓",
+        artist: "胡友馨",
+        award: "特優",
+        sealClass: "seal-top",
+        awardRank: 1,
+        filename: "特優_胡友馨_可愛的貓.jpg",
+        width: 646,
+        height: 1272,
+        aspectRatio: "1:1.97",
+        category: "水墨設色 / 彩墨工致",
+        tags: ["貓咪", "日常情趣", "童趣", "生活"],
+        description: "描繪少女與愛貓度過的悠閒午後。畫面下半部大貓四腳朝天仰臥翻滾，毛流筆觸細膩生動，神態慵懶自適；上方小貓與手持逗貓棒的主人深情呼應，背景復古立扇吹送陣陣涼風。水墨渲染與線描層次豐富，滿溢日常生活的溫馨與童趣。",
+        highlight: "貓咪翻滾的毛流線條與眼神極具靈性，電風扇的風動線條與水墨渲染巧妙交織，展現純真童心。",
+        colors: ["#2d2723", "#d89e4c", "#5a7a8d", "#e3d8c5"]
+      },
+      {
+        id: 2,
+        title: "老鞋匠",
+        artist: "黃韋恩",
+        award: "特優",
+        sealClass: "seal-top",
+        awardRank: 1,
+        filename: "特優_黃韋恩_老鞋匠.jpg",
+        width: 645,
+        height: 1309,
+        aspectRatio: "1:2.03",
+        category: "水墨設色 / 人物寫實",
+        tags: ["傳統老店", "職人精神", "鞋匠", "懷舊人情"],
+        description: "取材自傳統「富永鞋坊」的日常情景。老師傅戴著老花眼鏡聚精會神縫補鞋底，粗糙厚實的雙手透露多年歲月歷練；店內架上整齊陳列各式手工鞋，桌下鞋楦、各色線軸堆疊繁複，身旁孩子們穿梭試鞋。水墨皴擦層次深厚，刻畫出台灣傳統市井老行業的真摯溫度與職人精神。",
+        highlight: "老鞋匠專注縫補的面部神韻刻畫入微，滿地工具鞋履的細密構圖營造出飽滿動人的生活故事感。",
+        colors: ["#252528", "#335e7d", "#ba5d36", "#a0885c"]
+      },
+      {
+        id: 3,
+        title: "鳥店",
+        artist: "孫曼紗",
+        award: "優等",
+        sealClass: "seal-first",
+        awardRank: 2,
+        filename: "優等_孫曼紗_鳥店.jpg",
+        width: 686,
+        height: 1338,
+        aspectRatio: "1:1.95",
+        category: "重彩水墨 / 光影氛圍",
+        tags: ["市井角落", "禽鳥", "古典光影", "靜謐詩意"],
+        description: "深邃幽微的鳥店空間中，一道溫暖柔和的光線自天井灑落。層疊高懸的各式竹籠與木架層次深遠，籠中雀鳥啼鳴，店主身著紫袍專注撫照籠鳥，地面數隻白鴨悠閒踱步覓食。墨色沉穩厚重、光影明暗對比強烈，呈現出宛如古典光影美學與東方水墨交融的詩意氛圍。",
+        highlight: "幽深店舖中光束破空而入的渲染手法極具水準，白鴨的光澤與背景的深邃相映成趣。",
+        colors: ["#1e1b21", "#543c5b", "#ba9f5d", "#e4e1d5"]
+      },
+      {
+        id: 4,
+        title: "偷蛋賊",
+        artist: "陳希帆",
+        award: "優等",
+        sealClass: "seal-first",
+        awardRank: 2,
+        filename: "優等_陳希帆_偷蛋賊.jpg",
+        width: 662,
+        height: 1357,
+        aspectRatio: "1:2.05",
+        category: "水墨設色 / 敘事動態",
+        tags: ["農村故事", "奔跑動態", "幽默童趣", "公雞"],
+        description: "充滿強烈戲劇張力與動態節奏的鄉村瞬間！偷蛋少年雙手緊抓裝滿雞蛋的網袋慌張狂奔，身後群雞拍翅狂追，前方巨大公雞張牙舞爪迎面堵截。作者以粗獷有力的線條、誇張生動的肢體與表情，營造出緊湊又滑稽的農村追逐戰，極富故事想像力。",
+        highlight: "母雞公雞怒目張翅的羽毛筆觸層次分明，偷蛋少年驚慌失措的表情極富喜劇張力。",
+        colors: ["#2d2722", "#c45c31", "#417282", "#d2a84b"]
+      },
+      {
+        id: 5,
+        title: "叢靈",
+        artist: "吳湘琳",
+        award: "甲等",
+        sealClass: "seal-merit",
+        awardRank: 3,
+        filename: "甲等_吳湘琳_叢靈.jpg",
+        width: 636,
+        height: 1343,
+        aspectRatio: "1:2.11",
+        category: "細筆水墨 / 微觀自然",
+        tags: ["微觀生態", "生命循環", "自然秘境", "蜘蛛"],
+        description: "以獨特的微觀俯瞰視角，穿透林間潮濕的腐殖土與枯木。交錯的藤蔓與樹根間，斑斕蜘蛛正結網守候，森白的小型動物殘骸靜臥土石之中，四周同時萌發出點點青翠嫩葉。極為繁複精湛的線條勾勒與多層墨色點染，深刻展現出大自然深處生與死循環不息的神秘與敬畏。",
+        highlight: "獸骨白描的靜謐與蜘蛛結網的躍動並存，在繁複草木肌理中展現了驚人的工筆毅力與哲思。",
+        colors: ["#21261d", "#506f3b", "#b28d39", "#b3afa3"]
+      },
+      {
+        id: 6,
+        title: "巷口麵店",
+        artist: "林宜璇",
+        award: "甲等",
+        sealClass: "seal-merit",
+        awardRank: 3,
+        filename: "甲等_林宜璇_巷口麵店.jpg",
+        width: 686,
+        height: 1313,
+        aspectRatio: "1:1.91",
+        category: "民俗水墨 / 在地風情",
+        tags: ["台灣小吃", "傳統麵攤", "夜市煙火", "庶民美食"],
+        description: "滿溢熱騰騰市井煙火氣的台灣巷口麵攤！老闆手持長筷與濾網熟練甩麵，大鍋蒸騰起濃郁白煙；玻璃櫃中整齊排列滷味小菜，新鮮青菜裝滿竹簍；台前坐滿津津有味品嚐美食的客人，孩童雀躍歡笑。構圖飽滿緊湊、色調鮮明熱情，將在地最親切暖心的台灣街頭美食風景描摹得淋漓盡致。",
+        highlight: "滿桌琳瑯滿目的台味小吃與熱騰騰蒸氣的渲染，凝縮出台灣最親切的庶民人情味。",
+        colors: ["#273b52", "#ba482e", "#3f6a39", "#e2a939"]
+      },
+      {
+        id: 7,
+        title: "昆蟲大進擊",
+        artist: "楊甯宇",
+        award: "甲等",
+        sealClass: "seal-merit",
+        awardRank: 3,
+        filename: "甲等_楊甯宇_昆蟲大進擊.jpg",
+        width: 683,
+        height: 1384,
+        aspectRatio: "1:2.03",
+        category: "重彩水墨 / 冒險童趣",
+        tags: ["昆蟲生態", "甲蟲對決", "夜間探險", "童年探索"],
+        description: "夜間樹林裡的甲蟲王者爭霸戰！數隻披戴漆黑鎧甲的巨型兜蟲與鍬形蟲在神木樹幹上猛烈角力；頭戴頭燈的少年們屏息仰望，張大嘴巴驚呼喝采。強勁有力的螺旋樹紋與現代感強烈的墨色留白，生動捕捉了孩子們探索自然奧秘時的興奮狂喜與無窮好奇。",
+        highlight: "黑亮堅硬的甲蟲光澤感與孩子們誇張震撼的面部表情對比鮮明，極具動感震撼力。",
+        colors: ["#171f28", "#c4963f", "#3a7f78", "#cd4c31"]
+      }
+    ];
+
+    /* State Management */
+    let currentFilter = 'all';
+    let searchQuery = '';
+    let sortMode = 'award-asc';
+    let currentArtworkIndex = 0;
+    let favorites = JSON.parse(localStorage.getItem('art_favorites') || '[]');
+    let currentZoom = 1;
+    let panX = 0, panY = 0;
+    let isDragging = false;
+    let startX = 0, startY = 0;
+
+    /* DOM Elements */
+    const galleryGrid = document.getElementById('galleryGrid');
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+    const favoritesCount = document.getElementById('favoritesCount');
+
+    // Layout buttons
+    const layoutGridBtn = document.getElementById('layoutGridBtn');
+    const layoutScrollBtn = document.getElementById('layoutScrollBtn');
+    const layoutSingleBtn = document.getElementById('layoutSingleBtn');
+
+    // Lightbox elements
+    const lightboxModal = document.getElementById('lightboxModal');
+    const closeLightboxBtn = document.getElementById('closeLightboxBtn');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxImgWrapper = document.getElementById('lightboxImgWrapper');
+    const lightboxViewport = document.getElementById('lightboxViewport');
+    const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+    const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const zoomResetBtn = document.getElementById('zoomResetBtn');
+    const zoomLevelBadge = document.getElementById('zoomLevelBadge');
+    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+    const lightboxSidebar = document.getElementById('lightboxSidebar');
+    const modalAwardBadge = document.getElementById('modalAwardBadge');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalArtist = document.getElementById('modalArtist');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalHighlight = document.getElementById('modalHighlight');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalDims = document.getElementById('modalDims');
+    const modalAspect = document.getElementById('modalAspect');
+    const modalColors = document.getElementById('modalColors');
+    const modalFavBtn = document.getElementById('modalFavBtn');
+    const modalFavText = document.getElementById('modalFavText');
+    const modalShareBtn = document.getElementById('modalShareBtn');
+
+    // Slideshow elements
+    const slideshowModal = document.getElementById('slideshowModal');
+    const launchSlideshowBtn = document.getElementById('launchSlideshowBtn');
+    const closeSlideshowBtn = document.getElementById('closeSlideshowBtn');
+    const slideshowImg = document.getElementById('slideshowImg');
+    const slideshowBg = document.getElementById('slideshowBg');
+    const slideshowAward = document.getElementById('slideshowAward');
+    const slideshowTitle = document.getElementById('slideshowTitle');
+    const slideshowArtist = document.getElementById('slideshowArtist');
+    const slideshowPrevBtn = document.getElementById('slideshowPrevBtn');
+    const slideshowNextBtn = document.getElementById('slideshowNextBtn');
+    const slideshowPlayToggle = document.getElementById('slideshowPlayToggle');
+    const slideshowPauseIcon = document.getElementById('slideshowPauseIcon');
+    const slideshowPlayIcon = document.getElementById('slideshowPlayIcon');
+    const slideshowProgressBar = document.getElementById('slideshowProgressBar');
+
+    let slideshowTimer = null;
+    let slideshowProgressTimer = null;
+    let slideshowInterval = 5500;
+    let slideshowRunning = false;
+    let slideshowStartTime = 0;
+
+    // Toast
+    const toastMessage = document.getElementById('toastMessage');
+    const toastText = document.getElementById('toastText');
+
+    /* Initialize Gallery */
+    function init() {
+      updateFavoritesCounter();
+      renderGallery();
+      setupEventListeners();
+    }
+
+    /* Render Gallery */
+    function renderGallery() {
+      // 1. Filter
+      let list = artworksData.filter(art => {
+        // Award filter
+        if (currentFilter === 'favorites') {
+          if (!favorites.includes(art.id)) return false;
+        } else if (currentFilter !== 'all') {
+          if (art.award !== currentFilter) return false;
+        }
+
+        // Search query
+        if (searchQuery.trim() !== '') {
+          const q = searchQuery.toLowerCase().trim();
+          const matchTitle = art.title.toLowerCase().includes(q);
+          const matchArtist = art.artist.toLowerCase().includes(q);
+          const matchAward = art.award.toLowerCase().includes(q);
+          const matchTag = art.tags.some(t => t.toLowerCase().includes(q));
+          const matchDesc = art.description.toLowerCase().includes(q);
+          if (!matchTitle && !matchArtist && !matchAward && !matchTag && !matchDesc) {
+            return false;
+          }
+        }
+
+        return true;
+      });
+
+      // 2. Sort
+      if (sortMode === 'award-asc') {
+        list.sort((a, b) => a.awardRank - b.awardRank);
+      } else if (sortMode === 'title-asc') {
+        list.sort((a, b) => a.title.localeCompare(b.title, 'zh-Hant'));
+      } else if (sortMode === 'artist-asc') {
+        list.sort((a, b) => a.artist.localeCompare(b.artist, 'zh-Hant'));
+      }
+
+      // 3. Render HTML
+      if (list.length === 0) {
+        galleryGrid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">🎨</div>
+            <h3>查無符合條件之水墨作品</h3>
+            <p>請嘗試調整搜尋關鍵字或切換獲獎分類標籤。</p>
+          </div>
+        `;
+        return;
+      }
+
+      galleryGrid.innerHTML = list.map((art) => {
+        const isFav = favorites.includes(art.id);
+        const encodedUrl = encodeURI(art.filename);
+        
+        return `
+          <article class="art-card" data-id="${art.id}">
+            <!-- Silk Mounting Frame -->
+            <div class="art-frame-wrapper" onclick="openLightboxById(${art.id})">
+              <!-- Award Seal -->
+              <div class="award-seal ${art.sealClass}">
+                <span>${art.award}</span>
+              </div>
+
+              <!-- Overlay Action Buttons -->
+              <div class="art-overlay-actions" onclick="event.stopPropagation()">
+                <button class="overlay-btn ${isFav ? 'favorited' : ''}" title="${isFav ? '取消收藏' : '收藏畫作'}" onclick="toggleFavorite(${art.id}, event)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </button>
+                <button class="overlay-btn" title="全螢幕高清細賞" onclick="openLightboxById(${art.id})">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="11" y1="8" x2="11" y2="14"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="art-frame-inner">
+                <img 
+                  src="./${encodedUrl}" 
+                  alt="${art.award} - ${art.artist}《${art.title}》" 
+                  class="art-img" 
+                  loading="lazy"
+                  width="${art.width}"
+                  height="${art.height}"
+                />
+              </div>
+            </div>
+
+            <!-- Card Info -->
+            <div class="art-details">
+              <div>
+                <div class="art-header-row">
+                  <h3 class="art-title">${art.title}</h3>
+                  <div class="art-artist">
+                    <span class="artist-seal-mini">作</span>
+                    <span>${art.artist}</span>
+                  </div>
+                </div>
+
+                <div class="art-meta">
+                  <span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    ${art.award}
+                  </span>
+                  <span>•</span>
+                  <span>${art.category.split('/')[0].trim()}</span>
+                  <span>•</span>
+                  <span>${art.aspectRatio}</span>
+                </div>
+
+                <p class="art-brief">${art.description}</p>
+
+                <div class="art-tags">
+                  ${art.tags.map(t => `<span class="art-tag">#${t}</span>`).join('')}
+                </div>
+              </div>
+
+              <div class="art-footer">
+                <button class="btn-explore" onclick="openLightboxById(${art.id})">
+                  <span>鑑賞賞析</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+
+                <button class="btn-heart ${isFav ? 'favorited' : ''}" onclick="toggleFavorite(${art.id}, event)">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                  <span>${isFav ? '已收藏' : '收藏'}</span>
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    /* Favorites System */
+    function toggleFavorite(id, e) {
+      if (e) e.stopPropagation();
+      const art = artworksData.find(a => a.id === id);
+      const index = favorites.indexOf(id);
+      
+      if (index === -1) {
+        favorites.push(id);
+        showToast(`已將《${art.title}》加入我的收藏`);
+        playChime(660);
+      } else {
+        favorites.splice(index, 1);
+        showToast(`已取消收藏《${art.title}》`);
+      }
+      
+      localStorage.setItem('art_favorites', JSON.stringify(favorites));
+      updateFavoritesCounter();
+      renderGallery();
+      updateModalFavoriteState();
+    }
+
+    function updateFavoritesCounter() {
+      favoritesCount.textContent = favorites.length;
+    }
+
+    function filterByAward(award) {
+      currentFilter = award;
+      filterPills.forEach(p => {
+        p.classList.toggle('active', p.dataset.filter === award);
+      });
+      renderGallery();
+      document.querySelector('.filter-wrapper').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Toast Notification */
+    let toastTimeout = null;
+    function showToast(msg) {
+      toastText.textContent = msg;
+      toastMessage.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastMessage.classList.remove('show');
+      }, 2500);
+    }
+
+    /* Lightbox Modal Logic */
+    function openLightboxById(id) {
+      const idx = artworksData.findIndex(a => a.id === id);
+      if (idx !== -1) {
+        currentArtworkIndex = idx;
+        openLightbox();
+      }
+    }
+
+    function openLightbox() {
+      lightboxModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      loadArtworkToLightbox(currentArtworkIndex);
+      resetZoom();
+      playChime(520);
+    }
+
+    function closeLightbox() {
+      lightboxModal.classList.remove('active');
+      document.body.style.overflow = '';
+      resetZoom();
+    }
+
+    function loadArtworkToLightbox(index) {
+      const art = artworksData[index];
+      if (!art) return;
+
+      lightboxImg.src = `./${encodeURI(art.filename)}`;
+      lightboxImg.alt = `${art.award} - ${art.artist}《${art.title}》`;
+
+      modalTitle.textContent = art.title;
+      modalArtist.textContent = art.artist;
+      modalDescription.textContent = art.description;
+      modalHighlight.textContent = art.highlight;
+      modalCategory.textContent = art.category;
+      modalDims.textContent = `${art.width} × ${art.height} px`;
+      modalAspect.textContent = `${art.aspectRatio} 豎軸`;
+
+      // Award badge style
+      modalAwardBadge.textContent = art.award;
+      modalAwardBadge.className = `sidebar-award award-seal ${art.sealClass}`;
+
+      // Color swatches
+      modalColors.innerHTML = art.colors.map(c => `
+        <div class="color-swatch" style="background-color: ${c};" title="${c}"></div>
+      `).join('');
+
+      updateModalFavoriteState();
+    }
+
+    function updateModalFavoriteState() {
+      const art = artworksData[currentArtworkIndex];
+      if (!art) return;
+      const isFav = favorites.includes(art.id);
+      modalFavBtn.classList.toggle('favorited', isFav);
+      modalFavBtn.querySelector('svg').setAttribute('fill', isFav ? 'currentColor' : 'none');
+      modalFavText.textContent = isFav ? '已在收藏中' : '加入收藏';
+    }
+
+    function nextArtwork() {
+      currentArtworkIndex = (currentArtworkIndex + 1) % artworksData.length;
+      loadArtworkToLightbox(currentArtworkIndex);
+      resetZoom();
+    }
+
+    function prevArtwork() {
+      currentArtworkIndex = (currentArtworkIndex - 1 + artworksData.length) % artworksData.length;
+      loadArtworkToLightbox(currentArtworkIndex);
+      resetZoom();
+    }
+
+    /* Deep Zoom & Pan Control */
+    function applyTransform() {
+      lightboxImgWrapper.style.transform = `translate(${panX}px, ${panY}px) scale(${currentZoom})`;
+      zoomLevelBadge.textContent = `${Math.round(currentZoom * 100)}%`;
+    }
+
+    function setZoom(newZoom) {
+      currentZoom = Math.min(Math.max(0.6, newZoom), 3.5);
+      if (currentZoom === 1) {
+        panX = 0;
+        panY = 0;
+      }
+      applyTransform();
+    }
+
+    function resetZoom() {
+      currentZoom = 1;
+      panX = 0;
+      panY = 0;
+      applyTransform();
+    }
+
+    // Zoom buttons
+    zoomInBtn.addEventListener('click', () => setZoom(currentZoom + 0.3));
+    zoomOutBtn.addEventListener('click', () => setZoom(currentZoom - 0.3));
+    zoomResetBtn.addEventListener('click', resetZoom);
+
+    // Mouse Wheel Zoom on Viewport
+    lightboxViewport.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const zoomFactor = e.deltaY < 0 ? 0.15 : -0.15;
+      setZoom(currentZoom + zoomFactor);
+    }, { passive: false });
+
+    // Drag to Pan
+    lightboxViewport.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.viewport-toolbar') || e.target.closest('.lightbox-nav-btn')) return;
+      isDragging = true;
+      startX = e.clientX - panX;
+      startY = e.clientY - panY;
+      lightboxViewport.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      panX = e.clientX - startX;
+      panY = e.clientY - startY;
+      applyTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        lightboxViewport.classList.remove('is-dragging');
+      }
+    });
+
+    // Double click to zoom in / reset
+    lightboxViewport.addEventListener('dblclick', (e) => {
+      if (e.target.closest('.viewport-toolbar') || e.target.closest('.lightbox-nav-btn')) return;
+      if (currentZoom > 1.2) {
+        resetZoom();
+      } else {
+        setZoom(2.0);
+      }
+    });
+
+    /* Slideshow Virtual Tour Mode */
+    function openSlideshow() {
+      if (lightboxModal.classList.contains('active')) {
+        closeLightbox();
+      }
+      slideshowModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      currentArtworkIndex = 0;
+      showSlideshowSlide(currentArtworkIndex);
+      startSlideshowAutoPlay();
+      playChime(600);
+    }
+
+    function closeSlideshow() {
+      slideshowModal.classList.remove('active');
+      document.body.style.overflow = '';
+      stopSlideshowAutoPlay();
+    }
+
+    function showSlideshowSlide(index) {
+      const art = artworksData[index];
+      if (!art) return;
+
+      const url = `./${encodeURI(art.filename)}`;
+      slideshowImg.src = url;
+      slideshowBg.style.backgroundImage = `url("${url}")`;
+      slideshowAward.textContent = art.award;
+      slideshowAward.className = `slideshow-award-tag award-seal ${art.sealClass}`;
+      slideshowTitle.textContent = art.title;
+      slideshowArtist.textContent = `${art.artist} 作品 · ${art.category}`;
+      resetSlideshowProgress();
+    }
+
+    function nextSlide() {
+      currentArtworkIndex = (currentArtworkIndex + 1) % artworksData.length;
+      showSlideshowSlide(currentArtworkIndex);
+    }
+
+    function prevSlide() {
+      currentArtworkIndex = (currentArtworkIndex - 1 + artworksData.length) % artworksData.length;
+      showSlideshowSlide(currentArtworkIndex);
+    }
+
+    function resetSlideshowProgress() {
+      slideshowStartTime = Date.now();
+      slideshowProgressBar.style.width = '0%';
+    }
+
+    function startSlideshowAutoPlay() {
+      slideshowRunning = true;
+      slideshowPauseIcon.style.display = 'block';
+      slideshowPlayIcon.style.display = 'none';
+      resetSlideshowProgress();
+
+      clearInterval(slideshowTimer);
+      clearInterval(slideshowProgressTimer);
+
+      slideshowTimer = setInterval(() => {
+        nextSlide();
+      }, slideshowInterval);
+
+      slideshowProgressTimer = setInterval(() => {
+        const elapsed = Date.now() - slideshowStartTime;
+        const pct = Math.min(100, (elapsed / slideshowInterval) * 100);
+        slideshowProgressBar.style.width = `${pct}%`;
+      }, 50);
+    }
+
+    function stopSlideshowAutoPlay() {
+      slideshowRunning = false;
+      slideshowPauseIcon.style.display = 'none';
+      slideshowPlayIcon.style.display = 'block';
+      clearInterval(slideshowTimer);
+      clearInterval(slideshowProgressTimer);
+      slideshowProgressBar.style.width = '0%';
+    }
+
+    function toggleSlideshowAutoPlay() {
+      if (slideshowRunning) {
+        stopSlideshowAutoPlay();
+      } else {
+        startSlideshowAutoPlay();
+      }
+    }
+
+    /* Web Audio API Chime Synthesizer (Zero Dependencies Zen Bell) */
+    let audioCtx = null;
+    let soundEnabled = false;
+
+    function playChime(freq = 520) {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        // Pentatonic harmonics
+        osc.frequency.exponentialRampToValueAtTime(freq * 0.98, audioCtx.currentTime + 1.2);
+
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.5);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.6);
+      } catch (e) {
+        // Audio policy or unsupported
+      }
+    }
+
+    /* Setup Event Listeners */
+    function setupEventListeners() {
+      // Filter pills
+      filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          filterPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          currentFilter = pill.dataset.filter;
+          renderGallery();
+        });
+      });
+
+      // Search input
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        renderGallery();
+      });
+
+      // Sorter
+      sortSelect.addEventListener('change', (e) => {
+        sortMode = e.target.value;
+        renderGallery();
+      });
+
+      // Layout Switchers
+      layoutGridBtn.addEventListener('click', () => {
+        galleryGrid.className = 'gallery-grid';
+        layoutGridBtn.classList.add('active');
+        layoutScrollBtn.classList.remove('active');
+        layoutSingleBtn.classList.remove('active');
+      });
+
+      layoutScrollBtn.addEventListener('click', () => {
+        galleryGrid.className = 'gallery-grid layout-scroll';
+        layoutScrollBtn.classList.add('active');
+        layoutGridBtn.classList.remove('active');
+        layoutSingleBtn.classList.remove('active');
+      });
+
+      layoutSingleBtn.addEventListener('click', () => {
+        galleryGrid.className = 'gallery-grid layout-single';
+        layoutSingleBtn.classList.add('active');
+        layoutGridBtn.classList.remove('active');
+        layoutScrollBtn.classList.remove('active');
+      });
+
+      // Theme toggle
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const moonIcon = document.getElementById('moonIcon');
+      const sunIcon = document.getElementById('sunIcon');
+      
+      themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('art_theme', nextTheme);
+        
+        moonIcon.style.display = nextTheme === 'dark' ? 'block' : 'none';
+        sunIcon.style.display = nextTheme === 'light' ? 'block' : 'none';
+        showToast(nextTheme === 'dark' ? '已切換至 墨黑展廳模式' : '已切換至 宣紙雅白模式');
+      });
+
+      // Restore stored theme
+      const savedTheme = localStorage.getItem('art_theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        moonIcon.style.display = savedTheme === 'dark' ? 'block' : 'none';
+        sunIcon.style.display = savedTheme === 'light' ? 'block' : 'none';
+      }
+
+      // Sound ambience toggle
+      const soundToggleBtn = document.getElementById('soundToggleBtn');
+      const soundOnIcon = document.getElementById('soundOnIcon');
+      const soundOffIcon = document.getElementById('soundOffIcon');
+
+      soundToggleBtn.addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        soundOnIcon.style.display = soundEnabled ? 'block' : 'none';
+        soundOffIcon.style.display = soundEnabled ? 'none' : 'block';
+        showToast(soundEnabled ? '已開啟水墨雅音氛圍' : '已關閉水墨雅音氛圍');
+        if (soundEnabled) playChime(440);
+      });
+
+      // Lightbox navigation
+      closeLightboxBtn.addEventListener('click', closeLightbox);
+      lightboxNextBtn.addEventListener('click', nextArtwork);
+      lightboxPrevBtn.addEventListener('click', prevArtwork);
+
+      // Lightbox sidebar toggle (for mobile / responsive)
+      sidebarToggleBtn.addEventListener('click', () => {
+        lightboxSidebar.classList.toggle('open');
+      });
+
+      // Lightbox favorite button
+      modalFavBtn.addEventListener('click', () => {
+        const art = artworksData[currentArtworkIndex];
+        if (art) toggleFavorite(art.id);
+      });
+
+      // Lightbox copy info
+      modalShareBtn.addEventListener('click', () => {
+        const art = artworksData[currentArtworkIndex];
+        if (!art) return;
+        const text = `【${art.award}】${art.artist}《${art.title}》\n類別：${art.category}\n簡介：${art.description}`;
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('作品簡介已複製至剪貼簿！');
+        }).catch(() => {
+          showToast('作品資訊：' + art.title);
+        });
+      });
+
+      // Slideshow launch and controls
+      launchSlideshowBtn.addEventListener('click', openSlideshow);
+      closeSlideshowBtn.addEventListener('click', closeSlideshow);
+      slideshowNextBtn.addEventListener('click', nextSlide);
+      slideshowPrevBtn.addEventListener('click', prevSlide);
+      slideshowPlayToggle.addEventListener('click', toggleSlideshowAutoPlay);
+
+      // Global Keyboard Shortcuts
+      window.addEventListener('keydown', (e) => {
+        // Lightbox open
+        if (lightboxModal.classList.contains('active')) {
+          if (e.key === 'Escape') closeLightbox();
+          if (e.key === 'ArrowRight') nextArtwork();
+          if (e.key === 'ArrowLeft') prevArtwork();
+          if (e.key === '+' || e.key === '=') setZoom(currentZoom + 0.3);
+          if (e.key === '-' || e.key === '_') setZoom(currentZoom - 0.3);
+          if (e.key === '0' || e.key.toLowerCase() === 'r') resetZoom();
+        }
+
+        // Slideshow open
+        if (slideshowModal.classList.contains('active')) {
+          if (e.key === 'Escape') closeSlideshow();
+          if (e.key === 'ArrowRight') nextSlide();
+          if (e.key === 'ArrowLeft') prevSlide();
+          if (e.key === ' ') {
+            e.preventDefault();
+            toggleSlideshowAutoPlay();
+          }
+        }
+      });
+    }
+
+    // Launch
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
